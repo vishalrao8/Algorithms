@@ -17,6 +17,17 @@ object Sorting {
     }
 
     fun bubbleSort(array: Array<Int>): Array<Int> {
-        throw UnknownError()
+        for (mainElementIndex in array.indices) {
+            var nestedIndex = mainElementIndex
+            while (nestedIndex < array.size - 1) {
+                if (array[nestedIndex] > array[nestedIndex + 1]) {
+                    val temp = array[nestedIndex]
+                    array[nestedIndex] = array[nestedIndex + 1]
+                    array[nestedIndex + 1] = temp
+                }
+                nestedIndex++
+            }
+        }
+        return array
     }
 }
