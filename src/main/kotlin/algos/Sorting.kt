@@ -1,7 +1,9 @@
 package algos
 
+import java.util.*
+
 object Sorting {
-   fun selectionSort(array: Array<Int>): Array<Int>{
+   fun selectionSort(array: MutableList<Int>): MutableList<Int>{
         for (outer in array.indices) {
             var minIndex = outer
             for (inner in outer + 1 until array.size) {
@@ -9,21 +11,17 @@ object Sorting {
                     minIndex = inner
                 }
             }
-            val temp = array[minIndex]
-            array[minIndex] = array[outer]
-            array[outer] = temp
+            Collections.swap(array, minIndex, outer)
         }
         return array
     }
 
-    fun bubbleSort(array: Array<Int>): Array<Int> {
+    fun bubbleSort(array: MutableList<Int>): MutableList<Int> {
         for (mainElementIndex in array.indices) {
             var nestedIndex = mainElementIndex
             while (nestedIndex < array.size - 1) {
                 if (array[nestedIndex] > array[nestedIndex + 1]) {
-                    val temp = array[nestedIndex]
-                    array[nestedIndex] = array[nestedIndex + 1]
-                    array[nestedIndex + 1] = temp
+                    Collections.swap(array, nestedIndex, nestedIndex+1)
                 }
                 nestedIndex++
             }

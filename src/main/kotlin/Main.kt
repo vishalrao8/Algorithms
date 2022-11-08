@@ -1,7 +1,7 @@
 import algos.Sorting
 
 fun main() {
-    val unsortedArray = arrayOf(2,5,4,7,9,3,0)
+    val unsortedArray = mutableListOf(2,5,4,7,9,3,0)
     val sortedArray = Sorting.bubbleSort(unsortedArray)
-    println(sortedArray.contentToString())
+    println(sortedArray)
 }
