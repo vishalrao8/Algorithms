@@ -17,13 +17,10 @@ object Sorting {
     }
 
     fun bubbleSort(array: MutableList<Int>): MutableList<Int> {
-        for (mainElementIndex in array.indices) {
-            var nestedIndex = mainElementIndex
-            while (nestedIndex < array.size - 1) {
-                if (array[nestedIndex] > array[nestedIndex + 1]) {
-                    Collections.swap(array, nestedIndex, nestedIndex+1)
-                }
-                nestedIndex++
+        for (pivot in array.indices) {
+            for (index in array.size - 1 downTo pivot + 1) {
+                if (array[index] < array[index - 1])
+                    Collections.swap(array, index, index - 1)
             }
         }
         return array
