@@ -4,7 +4,7 @@ import java.util.*
 
 object Sorting {
     //Time Complexity = O(n^2)
-    fun selectionSort(list: MutableList<Int>): MutableList<Int> {
+    fun selectionSort(list: MutableList<Int>): List<Int> {
         for (outer in list.indices) {
             var minIndex = outer
             for (inner in outer + 1 until list.size) {
@@ -18,7 +18,7 @@ object Sorting {
     }
 
     //Time Complexity = O(n^2)
-    fun bubbleSort(list: MutableList<Int>): MutableList<Int> {
+    fun bubbleSort(list: MutableList<Int>): List<Int> {
         for (pivot in list.indices) {
             for (index in list.size - 1 downTo pivot + 1) {
                 if (list[index] < list[index - 1]) Collections.swap(list, index, index - 1)
@@ -44,8 +44,8 @@ object Sorting {
 
     //Time Complexity = O(NLogN)
     //Space Complexity = O(n)
-    fun mergeSort(list: MutableList<Int>): List<Int> {
-        fun helper(start: Int, end: Int, list: MutableList<Int>): List<Int> {
+    fun mergeSort(list: List<Int>): List<Int> {
+        fun helper(start: Int, end: Int, list: List<Int>): List<Int> {
             if (start >= end) {
                 return list.slice(start..end)
             }
@@ -83,5 +83,32 @@ object Sorting {
         }
 
         return helper(0, list.size - 1, list)
+    }
+
+    fun quickSort(nums: List<Int>) {
+        fun helper(start: Int, end: Int, nums: List<Int>) {
+            if (start >= end) {
+                return
+            }
+            val randomIndex = (start..end).random()
+            // Swap random index with first value in array.
+            Collections.swap(nums, start, randomIndex)
+            // Start in place swapping.
+            val pivot = nums[start]
+            var smaller = start
+
+            for (bigger in start + 1 .. end) {
+                if (nums[bigger] <= pivot) {
+                    smaller++
+                    Collections.swap(nums, bigger, smaller)
+                }
+            }
+            // Place pivot in right spot.
+            Collections.swap(nums, start, smaller)
+            helper(start, smaller - 1, nums)
+            helper(smaller + 1, end, nums)
+        }
+
+        helper(0, nums.size - 1, nums)
     }
 }

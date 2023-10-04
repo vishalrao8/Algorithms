@@ -1,7 +1,13 @@
-import algos.Sorting
-
 fun main() {
-    val input = mutableListOf(2,5,4,7,9,3,0,3)
-    val output = Sorting.mergeSort(input)
-    println(output)
+    val input = intArrayOf(6, 4, 1, 2, 9, 3, 6)
+    val output = Solution().solve(input)
+
+//    print(output.contentToString())
+}
+
+// O(nlogn) + O(m) + S(m)
+class Solution {
+    fun solve(nums1: IntArray) {
+        nums1.sortedWith { a, b -> b - a }
+    }
 }
